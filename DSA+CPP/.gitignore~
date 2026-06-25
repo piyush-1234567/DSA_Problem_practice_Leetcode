@@ -1,0 +1,8 @@
+*.o
+*.obj
+generate
+*.exe
+*.out
+*.log
+*.tmp
+*~
