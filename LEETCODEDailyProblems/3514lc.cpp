@@ -1,35 +1,22 @@
-class Solution {
-public:
-    int uniqueXorTriplets(vector<int>& nums) {
-        const int MAXX = 2048; // nums[i] <= 1500 < 2048
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    vector<int> arr = {6,7,8,9};
+    vector<int> middle;
+    for(int i = 0;i < arr.size(); i++){
+        for(int j = 0; j < arr.size(); j++){
+            int x = arr[i] ^ arr[j];
+            middle.push_back(x);
+        }   
 
-        vector<int> values;
-        vector<bool> seen(MAXX, false);
-
-        for (int x : nums) {
-            if (!seen[x]) {
-                seen[x] = true;
-                values.push_back(x);
-            }
-        }
-
-        vector<vector<bool>> dp(4, vector<bool>(MAXX, false));
-        dp[0][0] = true;
-
-        for (int k = 1; k <= 3; k++) {
-            for (int x = 0; x < MAXX; x++) {
-                if (!dp[k - 1][x]) continue;
-                for (int v : values) {
-                    dp[k][x ^ v] = true;
-                }
-            }
-        }
-
-        int ans = 0;
-        for (bool ok : dp[3]) {
-            if (ok) ans++;
-        }
-
-        return ans;
     }
-};
+    unordered_set<int> ans;
+    for(int i = 0; i < arr.size(); i++){
+        for(int j = 0; j < middle.size(); j++){
+            int y = arr[i] ^ middle[j];
+            ans.insert(y);
+        }
+    }
+   
+    cout << ans.size();
+}
